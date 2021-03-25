@@ -36,7 +36,12 @@ def markov_chain(language, map_words, n):
         sentence.append(first_word)
         sentence.append(second_word)
         if pair in map_words:
-            sentence.append(map_words[pair])
+            after = map_words[pair]
+            if len(after) > 1:
+                word = random.choice(after)
+            else:
+                word = after[0]
+            sentence.append(word)
         else:
             sentence.append(random.choice(language))
         sentences.append(sentence)
@@ -60,7 +65,6 @@ def snoop_say(f, m):
 def main():
     m = random.randint(0, 50)
     say = snoop_say("./snoop279.txt", m)
-    print(m)
     for s in say:
         print(*s, end='')
 
