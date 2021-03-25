@@ -43,25 +43,27 @@ def markov_chain(language, map_words, n):
     return sentences
 
 
-def snoop_say(file, m):
-
-
-
-def main():
+def snoop_say(f, m):
     language = []
-    with open("./snoop279.txt", "r", buffering=10, encoding='utf-8') as file:
+    with open(f, "r", buffering=10, encoding='utf-8') as file:
         words(file, language)
     # print(language)
 
     map_words = transition_matrix(language)
     # print(map_words)
 
-    n = random.randint(0, 50)
-    sentences = markov_chain(language, map_words, n)
+    sentences = markov_chain(language, map_words, m)
     # print(sentences)
+    return sentences
 
+
+def main():
     m = random.randint(0, 50)
-    snoop_say("./snoop279.txt", m)
+    say = snoop_say("./snoop279.txt", m)
+    print(m)
+    for s in say:
+        print(*s, end='')
+
 
 if __name__ == '__main__':
     main()
